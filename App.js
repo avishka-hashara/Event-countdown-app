@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName="AddEvent">
                 <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'My Events' }} />
                 <Stack.Screen name="AddEvent" component={AddEventScreen} options={{ title: 'New Event' }} />
                 <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: 'Countdown' }} />
