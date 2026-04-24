@@ -1,5 +1,6 @@
 import {
     Alert,
+    Platform,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -11,9 +12,9 @@ export default function SettingsScreen({ navigation }) {
 
     const handleClearData = () => {
         // Platform-native confirmation dialog
-        if (window.confirm) {
+        if (Platform.OS === 'web') {
             // Fallback for Web browser testing
-            if (window.confirm("Are you sure you want to delete all events? This cannot be undone.")) {
+            if (window.confirm && window.confirm("Are you sure you want to delete all events? This cannot be undone.")) {
                 executeClear();
             }
         } else {
@@ -36,8 +37,8 @@ export default function SettingsScreen({ navigation }) {
     const executeClear = async () => {
         const isCleared = await clearAllEvents();
         if (isCleared) {
-            if (window.alert) {
-                window.alert("All events have been cleared.");
+            if (Platform.OS === 'web') {
+                if (window.alert) window.alert("All events have been cleared.");
             } else {
                 Alert.alert("Success", "All events have been cleared.");
             }

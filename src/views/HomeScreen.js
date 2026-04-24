@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getEvents } from '../controllers/EventController';
 
 export default function HomeScreen({ navigation }) {
@@ -71,7 +72,7 @@ export default function HomeScreen({ navigation }) {
     );
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {events.length === 0 ? (
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyText}>No events yet. Add your first one!</Text>
@@ -100,7 +101,7 @@ export default function HomeScreen({ navigation }) {
             >
                 <Text style={styles.settingsText}>Go to Settings</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 }
 
