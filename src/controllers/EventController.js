@@ -43,3 +43,14 @@ export const deleteEvent = async (eventId) => {
         return false;
     }
 };
+
+// Clear all events
+export const clearAllEvents = async () => {
+    try {
+        await AsyncStorage.removeItem(STORAGE_KEY);
+        return true;
+    } catch (e) {
+        console.error("Failed to clear events:", e);
+        return false;
+    }
+};
