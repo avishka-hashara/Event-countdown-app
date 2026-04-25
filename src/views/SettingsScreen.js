@@ -1,3 +1,4 @@
+import { BlurView } from "expo-blur";
 import {
     Alert,
     Platform,
@@ -57,7 +58,9 @@ export default function SettingsScreen({ navigation }) {
       <View style={[styles.glowBlob, styles.glowA]} />
       <View style={[styles.glowBlob, styles.glowB]} />
 
-      <View
+      <BlurView
+        intensity={40}
+        tint="dark"
         style={[styles.contentWrap, isDesktop && styles.contentWrapDesktop]}
       >
         <Text style={styles.kicker}>SETTINGS</Text>
@@ -65,7 +68,7 @@ export default function SettingsScreen({ navigation }) {
 
         <Text style={styles.header}>App Information</Text>
 
-        <View style={styles.infoCard}>
+        <BlurView intensity={28} tint="dark" style={styles.infoCard}>
           <View style={styles.rowItem}>
             <Text style={styles.infoLabel}>App Name</Text>
             <Text style={styles.infoValue}>Event Countdown</Text>
@@ -78,11 +81,11 @@ export default function SettingsScreen({ navigation }) {
             <Text style={styles.infoLabel}>Developed For</Text>
             <Text style={styles.infoValue}>ITE 3123 MAD</Text>
           </View>
-        </View>
+        </BlurView>
 
         <Text style={styles.header}>Danger Zone</Text>
 
-        <View style={styles.dangerCard}>
+        <BlurView intensity={24} tint="dark" style={styles.dangerCard}>
           <Text style={styles.dangerText}>
             This action permanently removes all saved countdown events.
           </Text>
@@ -93,8 +96,8 @@ export default function SettingsScreen({ navigation }) {
           >
             <Text style={styles.dangerButtonText}>Clear All Events</Text>
           </TouchableOpacity>
-        </View>
-      </View>
+        </BlurView>
+      </BlurView>
     </SafeAreaView>
   );
 }
@@ -128,10 +131,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(105, 141, 215, 0.42)",
     borderRadius: 22,
-    backgroundColor: "rgba(12, 27, 72, 0.62)",
+    backgroundColor: "rgba(12, 27, 72, 0.44)",
     padding: 18,
     alignSelf: "center",
     marginTop: 8,
+    overflow: "hidden",
   },
   contentWrapDesktop: {
     maxWidth: 980,
@@ -160,12 +164,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   infoCard: {
-    backgroundColor: "rgba(27, 45, 94, 0.58)",
+    backgroundColor: "rgba(27, 45, 94, 0.36)",
     padding: 14,
     borderRadius: 14,
     borderWidth: 1,
     borderColor: "rgba(129, 162, 224, 0.45)",
     marginBottom: 8,
+    overflow: "hidden",
   },
   rowItem: {
     borderBottomWidth: 1,
@@ -189,11 +194,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   dangerCard: {
-    backgroundColor: "rgba(80, 20, 42, 0.34)",
+    backgroundColor: "rgba(80, 20, 42, 0.24)",
     borderRadius: 14,
     borderWidth: 1,
     borderColor: "rgba(255, 111, 138, 0.45)",
     padding: 14,
+    overflow: "hidden",
   },
   dangerText: {
     color: "#ffd2dc",

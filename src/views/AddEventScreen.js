@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
 import { useState } from "react";
 import {
     KeyboardAvoidingView,
@@ -90,7 +91,11 @@ export default function AddEventScreen({ navigation }) {
           ]}
           keyboardShouldPersistTaps="handled"
         >
-          <View style={[styles.formCard, isDesktop && styles.formCardDesktop]}>
+          <BlurView
+            intensity={40}
+            tint="dark"
+            style={[styles.formCard, isDesktop && styles.formCardDesktop]}
+          >
             <Text style={styles.kicker}>CREATE EVENT</Text>
             <Text style={styles.heading}>New Countdown</Text>
             <Text style={styles.subheading}>
@@ -100,7 +105,7 @@ export default function AddEventScreen({ navigation }) {
 
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Event Title</Text>
-              <View style={styles.inputWrap}>
+              <BlurView intensity={24} tint="dark" style={styles.inputWrap}>
                 <Ionicons name="sparkles-outline" size={18} color="#9bb5e8" />
                 <TextInput
                   style={styles.input}
@@ -109,12 +114,12 @@ export default function AddEventScreen({ navigation }) {
                   value={title}
                   onChangeText={setTitle}
                 />
-              </View>
+              </BlurView>
             </View>
 
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Event Date (YYYY-MM-DD)</Text>
-              <View style={styles.inputWrap}>
+              <BlurView intensity={24} tint="dark" style={styles.inputWrap}>
                 <Ionicons name="calendar-outline" size={18} color="#9bb5e8" />
                 <TextInput
                   style={styles.input}
@@ -124,17 +129,17 @@ export default function AddEventScreen({ navigation }) {
                   onChangeText={setDateString}
                   keyboardType="numbers-and-punctuation"
                 />
-              </View>
+              </BlurView>
             </View>
 
-            <View style={styles.previewCard}>
+            <BlurView intensity={20} tint="dark" style={styles.previewCard}>
               <Ionicons name="time-outline" size={16} color="#cae0ff" />
               <Text style={styles.previewText}>
                 {hasDatePreview
                   ? getDatePreview()
                   : "Date preview will appear here."}
               </Text>
-            </View>
+            </BlurView>
 
             {errorMessage ? (
               <Text style={styles.errorText}>{errorMessage}</Text>
@@ -143,7 +148,7 @@ export default function AddEventScreen({ navigation }) {
             <TouchableOpacity style={styles.button} onPress={handleSave}>
               <Text style={styles.buttonText}>Save Event</Text>
             </TouchableOpacity>
-          </View>
+          </BlurView>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -192,8 +197,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(110, 145, 214, 0.42)",
     borderRadius: 22,
-    backgroundColor: "rgba(12, 27, 72, 0.62)",
+    backgroundColor: "rgba(12, 27, 72, 0.42)",
     padding: 18,
+    overflow: "hidden",
   },
   formCardDesktop: {
     maxWidth: 820,
@@ -236,9 +242,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(121, 154, 218, 0.52)",
     borderRadius: 14,
-    backgroundColor: "rgba(18, 34, 80, 0.62)",
+    backgroundColor: "rgba(18, 34, 80, 0.46)",
     paddingHorizontal: 12,
     minHeight: 52,
+    overflow: "hidden",
   },
   input: {
     flex: 1,
@@ -252,12 +259,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(135, 166, 227, 0.38)",
     borderRadius: 14,
-    backgroundColor: "rgba(68, 95, 159, 0.24)",
+    backgroundColor: "rgba(68, 95, 159, 0.18)",
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
     paddingHorizontal: 12,
     paddingVertical: 12,
+    overflow: "hidden",
   },
   previewText: {
     color: "#d4e3ff",

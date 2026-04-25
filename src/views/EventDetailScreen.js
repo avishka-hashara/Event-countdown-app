@@ -1,3 +1,4 @@
+import { BlurView } from "expo-blur";
 import { useEffect, useState } from "react";
 import {
     Platform,
@@ -68,10 +69,10 @@ export default function EventDetailScreen({ route, navigation }) {
   };
 
   const TimeBlock = ({ value, label }) => (
-    <View style={styles.timeBlock}>
+    <BlurView intensity={24} tint="dark" style={styles.timeBlock}>
       <Text style={styles.timeValue}>{String(value).padStart(2, "0")}</Text>
       <Text style={styles.timeLabel}>{label}</Text>
-    </View>
+    </BlurView>
   );
 
   return (
@@ -79,18 +80,20 @@ export default function EventDetailScreen({ route, navigation }) {
       <View style={[styles.glowBlob, styles.glowA]} />
       <View style={[styles.glowBlob, styles.glowB]} />
 
-      <View
+      <BlurView
+        intensity={40}
+        tint="dark"
         style={[styles.contentWrap, isDesktop && styles.contentWrapDesktop]}
       >
         <Text style={styles.kicker}>COUNTDOWN</Text>
         <Text style={styles.title}>{event.title}</Text>
 
-        <View style={styles.metaCard}>
+        <BlurView intensity={20} tint="dark" style={styles.metaCard}>
           <Text style={styles.metaLabel}>Target Date</Text>
           <Text style={styles.metaDate}>{formatDate(event.targetDate)}</Text>
-        </View>
+        </BlurView>
 
-        <View style={styles.timerCard}>
+        <BlurView intensity={30} tint="dark" style={styles.timerCard}>
           {countdown.done ? (
             <View style={styles.doneBadge}>
               <Text style={styles.doneText}>Time is up</Text>
@@ -103,7 +106,7 @@ export default function EventDetailScreen({ route, navigation }) {
               <TimeBlock value={countdown.seconds} label="Sec" />
             </View>
           )}
-        </View>
+        </BlurView>
 
         <TouchableOpacity
           style={styles.editButton}
@@ -115,7 +118,7 @@ export default function EventDetailScreen({ route, navigation }) {
         <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
           <Text style={styles.deleteButtonText}>Delete Event</Text>
         </TouchableOpacity>
-      </View>
+      </BlurView>
     </SafeAreaView>
   );
 }
@@ -149,10 +152,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(105, 141, 215, 0.42)",
     borderRadius: 22,
-    backgroundColor: "rgba(12, 27, 72, 0.62)",
+    backgroundColor: "rgba(12, 27, 72, 0.44)",
     padding: 18,
     alignSelf: "center",
     marginTop: 8,
+    overflow: "hidden",
   },
   contentWrapDesktop: {
     maxWidth: 980,
@@ -177,10 +181,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(133, 165, 224, 0.38)",
     borderRadius: 14,
-    backgroundColor: "rgba(68, 95, 159, 0.24)",
+    backgroundColor: "rgba(68, 95, 159, 0.18)",
     paddingHorizontal: 12,
     paddingVertical: 10,
     marginBottom: 16,
+    overflow: "hidden",
   },
   metaLabel: {
     color: "#9fb8e9",
@@ -197,11 +202,12 @@ const styles = StyleSheet.create({
   timerCard: {
     borderWidth: 1,
     borderColor: "rgba(53, 213, 255, 0.62)",
-    backgroundColor: "rgba(27, 45, 94, 0.58)",
+    backgroundColor: "rgba(27, 45, 94, 0.36)",
     padding: 16,
     borderRadius: 18,
     width: "100%",
     marginBottom: 22,
+    overflow: "hidden",
   },
   countdownRow: {
     flexDirection: "row",
@@ -212,12 +218,13 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
     borderRadius: 14,
-    backgroundColor: "rgba(10, 20, 52, 0.62)",
+    backgroundColor: "rgba(10, 20, 52, 0.45)",
     borderWidth: 1,
     borderColor: "rgba(130, 162, 224, 0.45)",
     paddingVertical: 12,
     paddingHorizontal: 10,
     alignItems: "center",
+    overflow: "hidden",
   },
   timeValue: {
     color: "#f4f8ff",

@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useIsFocused } from "@react-navigation/native";
+import { BlurView } from "expo-blur";
 import { useEffect, useState } from "react";
 import {
     FlatList,
@@ -118,10 +119,10 @@ export default function HomeScreen({ navigation }) {
   );
 
   const CountdownBlock = ({ value, label }) => (
-    <View style={styles.timeBlock}>
+    <BlurView intensity={26} tint="dark" style={styles.timeBlock}>
       <Text style={styles.timeValue}>{String(value).padStart(2, "0")}</Text>
       <Text style={styles.timeLabel}>{label}</Text>
-    </View>
+    </BlurView>
   );
 
   // 4. Render Individual List Items
@@ -134,7 +135,9 @@ export default function HomeScreen({ navigation }) {
         style={[styles.cardWrap, { width: columnCount === 2 ? "49%" : "100%" }]}
         onPress={() => navigation.navigate("EventDetail", { event: item })}
       >
-        <View
+        <BlurView
+          intensity={35}
+          tint="dark"
           style={[
             styles.card,
             {
@@ -165,13 +168,13 @@ export default function HomeScreen({ navigation }) {
               <CountdownBlock value={countdown.seconds} label="Sec" />
             </View>
           )}
-        </View>
+        </BlurView>
       </Pressable>
     );
   };
 
   const Sidebar = () => (
-    <View style={styles.sidebarCard}>
+    <BlurView intensity={34} tint="dark" style={styles.sidebarCard}>
       <TouchableOpacity style={styles.sidebarItemActive}>
         <Ionicons name="grid-outline" size={18} color="#f6fbff" />
         <Text style={styles.sidebarItemTextActive}>Events</Text>
@@ -194,7 +197,7 @@ export default function HomeScreen({ navigation }) {
         <Ionicons name="settings-outline" size={18} color="#9fb1d8" />
         <Text style={styles.sidebarItemText}>Settings</Text>
       </TouchableOpacity>
-    </View>
+    </BlurView>
   );
 
   return (
@@ -206,12 +209,12 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.layout}>
         {isDesktop ? <Sidebar /> : null}
 
-        <View style={styles.mainPanel}>
+        <BlurView intensity={30} tint="dark" style={styles.mainPanel}>
           <View style={styles.headerRow}>
             <Text style={styles.title}>My Events</Text>
 
             <View style={styles.headerActions}>
-              <View style={styles.searchWrap}>
+              <BlurView intensity={20} tint="dark" style={styles.searchWrap}>
                 <Ionicons name="search-outline" size={18} color="#9fb0d7" />
                 <TextInput
                   style={styles.searchInput}
@@ -220,7 +223,7 @@ export default function HomeScreen({ navigation }) {
                   value={searchText}
                   onChangeText={setSearchText}
                 />
-              </View>
+              </BlurView>
 
               <TouchableOpacity
                 style={styles.newEventBtn}
@@ -271,7 +274,7 @@ export default function HomeScreen({ navigation }) {
               </TouchableOpacity>
             </ScrollView>
           ) : null}
-        </View>
+        </BlurView>
       </View>
     </SafeAreaView>
   );
@@ -319,11 +322,12 @@ const styles = StyleSheet.create({
     width: 220,
     borderWidth: 1,
     borderColor: "rgba(157, 179, 228, 0.35)",
-    backgroundColor: "rgba(20, 36, 82, 0.52)",
+    backgroundColor: "rgba(15, 28, 72, 0.36)",
     borderRadius: 22,
     padding: 12,
     justifyContent: "center",
     gap: 12,
+    overflow: "hidden",
   },
   sidebarItemActive: {
     flexDirection: "row",
@@ -356,9 +360,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(95, 131, 208, 0.45)",
     borderRadius: 22,
-    backgroundColor: "rgba(8, 22, 65, 0.55)",
+    backgroundColor: "rgba(8, 22, 65, 0.34)",
     paddingHorizontal: 14,
     paddingTop: 14,
+    overflow: "hidden",
   },
   headerRow: {
     flexDirection: "row",
@@ -388,10 +393,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(152, 176, 227, 0.45)",
-    backgroundColor: "rgba(84, 117, 187, 0.18)",
+    backgroundColor: "rgba(73, 104, 173, 0.24)",
     paddingHorizontal: 12,
     height: 46,
     gap: 8,
+    overflow: "hidden",
   },
   searchInput: {
     flex: 1,
@@ -425,7 +431,7 @@ const styles = StyleSheet.create({
   card: {
     overflow: "hidden",
     borderWidth: 1.2,
-    backgroundColor: "rgba(27, 45, 94, 0.58)",
+    backgroundColor: "rgba(23, 40, 86, 0.32)",
     padding: 22,
     borderRadius: 18,
     shadowColor: "#000",
@@ -474,12 +480,13 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
     borderRadius: 14,
-    backgroundColor: "rgba(10, 20, 52, 0.62)",
+    backgroundColor: "rgba(10, 20, 52, 0.45)",
     borderWidth: 1,
     borderColor: "rgba(130, 162, 224, 0.45)",
     paddingVertical: 12,
     paddingHorizontal: 10,
     alignItems: "center",
+    overflow: "hidden",
   },
   timeValue: {
     color: "#f4f8ff",
